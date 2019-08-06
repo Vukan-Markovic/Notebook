@@ -2,11 +2,13 @@ package vukan.com.notebook.database
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import vukan.com.notebook.utilities.SampleData
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
 class AppRepository private constructor(context: Context) {
+    private var mDb: AppDatabase? = AppDatabase.getInstance(context)
+    var mNotes: LiveData<List<NoteEntity>>? = getAllNotes()
+    private var executor: Executor = Executors.newSingleThreadExecutor()
 
     companion object {
         private var instance: AppRepository? = null
@@ -16,16 +18,6 @@ class AppRepository private constructor(context: Context) {
                 instance = AppRepository(context)
             }
             return instance
-        }
-    }
-
-    private var mDb: AppDatabase? = AppDatabase.getInstance(context)
-    var mNotes: LiveData<List<NoteEntity>>? = getAllNotes()
-    private val executor: Executor = Executors.newSingleThreadExecutor()
-
-    fun getSimpleData() {
-        executor.execute {
-            mDb?.noteDao()?.insertAll(SampleData.getNotes())
         }
     }
 

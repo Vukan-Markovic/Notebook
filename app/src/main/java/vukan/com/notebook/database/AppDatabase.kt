@@ -11,13 +11,9 @@ import androidx.room.TypeConverters
 abstract class AppDatabase : RoomDatabase() {
     companion object {
         private const val DATABASE_NAME: String = "AppDatabase.db"
-
-        @Target(AnnotationTarget.FIELD)
-        annotation class Volatile
-
+        @kotlin.jvm.Volatile
         private var instance: AppDatabase? = null
-
-        private val LOCK: Any = Any()
+        private val LOCK = Any()
 
         fun getInstance(context: Context): AppDatabase? {
             if (instance == null) {

@@ -10,7 +10,7 @@ interface NoteDao {
     fun insertNote(noteEntity: NoteEntity?)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(noteEntity: List<NoteEntity>)
+    fun insertAll(notes: List<NoteEntity>)
 
     @Delete
     fun deleteNote(noteEntity: NoteEntity?)
