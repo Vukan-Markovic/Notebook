@@ -2,12 +2,14 @@ package vukan.com.notebook.database
 
 import android.content.Context
 import androidx.lifecycle.LiveData
+import androidx.paging.PagedList
+import androidx.paging.toLiveData
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
 class AppRepository private constructor(context: Context) {
     private var mDb: AppDatabase? = AppDatabase.getInstance(context)
-    var mNotes: LiveData<List<NoteEntity>>? = getAllNotes()
+    var mNotes: LiveData<PagedList<NoteEntity>>? = getAllNotes()
     private var executor: Executor = Executors.newSingleThreadExecutor()
 
     companion object {
@@ -21,8 +23,8 @@ class AppRepository private constructor(context: Context) {
         }
     }
 
-    private fun getAllNotes(): LiveData<List<NoteEntity>>? {
-        return mDb?.noteDao()?.getAll()
+    private fun getAllNotes(): LiveData<PagedList<NoteEntity>>? {
+        return mDb?.noteDao()?.getAll()?.toLiveData(5)
     }
 
     fun deleteAllNotes() {

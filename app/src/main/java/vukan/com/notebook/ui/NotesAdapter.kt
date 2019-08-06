@@ -4,16 +4,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import vukan.com.notebook.database.NoteEntity
 import vukan.com.notebook.R
 import kotlinx.android.synthetic.main.note_list_item.view.*
 import vukan.com.notebook.MainFragmentDirections
 
-class NotesAdapter(notesData: MutableList<NoteEntity>) :
-    RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
-
-    private val mNotes: List<NoteEntity> = notesData
+class NotesAdapter : PagedListAdapter<NoteEntity, NotesAdapter.NoteViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         return NoteViewHolder(
@@ -25,17 +24,28 @@ class NotesAdapter(notesData: MutableList<NoteEntity>) :
         )
     }
 
-    override fun getItemCount(): Int {
-        return mNotes.size
-    }
-
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
-        val note: NoteEntity = mNotes[position]
-        holder.view.note_text.text = note.text
+        val note: NoteEntity? = getItem(position)
+        holder.view.note_text.text = note?.text
 
         holder.view.note_text.setOnClickListener {
             it.findNavController()
-                .navigate(MainFragmentDirections.mainToEditorFragmentAction(note.id))
+                .navigate(MainFragmentDirections.mainToEditorFragmentAction(note?.id!!))
+        }
+    }
+
+    companion object {
+        private val DIFF_CALLBACK = object :
+            DiffUtil.ItemCallback<NoteEntity>() {
+            override fun areItemsTheSame(
+                oldNote: NoteEntity,
+                newNote: NoteEntity
+            ) = oldNote.id == newNote.id
+
+            override fun areContentsTheSame(
+                oldNote: NoteEntity,
+                newNote: NoteEntity
+            ) = oldNote == newNote
         }
     }
 

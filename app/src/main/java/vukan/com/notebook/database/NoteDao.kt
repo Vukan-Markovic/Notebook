@@ -1,6 +1,6 @@
 package vukan.com.notebook.database
 
-import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import androidx.room.*
 
 @Dao
@@ -19,7 +19,7 @@ interface NoteDao {
     fun getNoteById(id: Int): NoteEntity
 
     @Query("SELECT * FROM notes ORDER BY date DESC")
-    fun getAll(): LiveData<List<NoteEntity>>
+    fun getAll(): DataSource.Factory<Int, NoteEntity>
 
     @Query("DELETE FROM notes")
     fun deleteAll(): Int

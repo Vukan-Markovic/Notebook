@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_editor.*
+import vukan.com.notebook.utilities.DeleteDialog
 import vukan.com.notebook.viewmodel.EditorViewModel
 
 class EditorFragment : Fragment() {
@@ -77,9 +78,20 @@ class EditorFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when {
             item.itemId == R.id.action_delete -> {
-                mViewModel.deleteNote()
-                findNavController()
-                    .navigate(EditorFragmentDirections.editorToMainFragmentAction())
+                val dialog = DeleteDialog()
+                dialog.show(requireFragmentManager(), "tag")
+                dialog.setOnYesNoClick(object : DeleteDialog.OnYesNoClick {
+                    override fun onYesClicked() {
+                        mViewModel.deleteNote()
+                        findNavController()
+                            .navigate(EditorFragmentDirections.editorToMainFragmentAction())
+                    }
+
+                    override fun onNoClicked() {
+                        dialog.dismiss()
+                    }
+                })
+
                 return true
             }
             item.itemId == R.id.menu_item_share -> {

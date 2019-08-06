@@ -13,7 +13,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-//        supportActionBar?.setLogo(R.mipmap.ic_launcher)
+//        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_check)
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val navController = findNavController(R.id.nav_host_fragment)
         toolbar.setupWithNavController(navController, AppBarConfiguration(navController.graph))
     }
