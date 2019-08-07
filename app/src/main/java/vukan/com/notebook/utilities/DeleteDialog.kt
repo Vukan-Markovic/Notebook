@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
+import vukan.com.notebook.R
 
 class DeleteDialog : DialogFragment() {
     private var yesNoClick: OnYesNoClick? = null
@@ -15,14 +16,14 @@ class DeleteDialog : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
-            builder.setMessage("Are you sure?")
+            builder.setMessage(getString(R.string.dialog_message))
                 .setPositiveButton(
-                    "Yes"
+                    getString(R.string.dialog_confirm)
                 ) { _, _ ->
                     yesNoClick?.onYesClicked()
                 }
                 .setNegativeButton(
-                    "No"
+                    getString(R.string.dialog_cancel)
                 ) { _, _ ->
                     yesNoClick?.onNoClicked()
                 }

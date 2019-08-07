@@ -16,9 +16,7 @@ class AppRepository private constructor(context: Context) {
         private var instance: AppRepository? = null
 
         fun getInstance(context: Context): AppRepository? {
-            if (instance == null) {
-                instance = AppRepository(context)
-            }
+            if (instance == null) instance = AppRepository(context)
             return instance
         }
     }

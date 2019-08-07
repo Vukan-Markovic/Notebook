@@ -11,4 +11,7 @@
     <string name="new_note">New note</string>
     <string name="note_list_empty">Note list is empty!</string>
     <string name="note_date_creation">Created: %1$s</string>
+    <string name="dialog_message">Are you sure?</string>
+    <string name="dialog_confirm">Yes</string>
+    <string name="dialog_cancel">No</string>
 </resources>

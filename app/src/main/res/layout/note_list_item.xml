@@ -40,5 +40,4 @@
             tools:text="Note text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.cardview.widget.CardView>

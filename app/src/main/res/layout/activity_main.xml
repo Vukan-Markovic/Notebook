@@ -18,7 +18,6 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:elevation="4dp"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
             tools:targetApi="lollipop" />
 
     </com.google.android.material.appbar.AppBarLayout>

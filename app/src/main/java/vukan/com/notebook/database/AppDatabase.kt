@@ -16,17 +16,15 @@ abstract class AppDatabase : RoomDatabase() {
         private val LOCK = Any()
 
         fun getInstance(context: Context): AppDatabase? {
-            if (instance == null) {
+            if (instance == null)
                 synchronized(LOCK) {
-                    if (instance == null) {
+                    if (instance == null)
                         instance = Room.databaseBuilder(
                             context.applicationContext,
                             AppDatabase::class.java,
                             DATABASE_NAME
                         ).build()
-                    }
                 }
-            }
 
             return instance
         }

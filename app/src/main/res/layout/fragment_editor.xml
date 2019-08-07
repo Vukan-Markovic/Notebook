@@ -55,7 +55,6 @@
                 app:fontFamily="@font/convergence" />
 
         </androidx.core.widget.NestedScrollView>
-
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

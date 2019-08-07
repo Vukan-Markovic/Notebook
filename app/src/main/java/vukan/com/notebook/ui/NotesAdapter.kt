@@ -7,10 +7,10 @@ import androidx.navigation.findNavController
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import vukan.com.notebook.database.NoteEntity
-import vukan.com.notebook.R
 import kotlinx.android.synthetic.main.note_list_item.view.*
 import vukan.com.notebook.MainFragmentDirections
+import vukan.com.notebook.R
+import vukan.com.notebook.database.NoteEntity
 
 class NotesAdapter : PagedListAdapter<NoteEntity, NotesAdapter.NoteViewHolder>(DIFF_CALLBACK) {
 

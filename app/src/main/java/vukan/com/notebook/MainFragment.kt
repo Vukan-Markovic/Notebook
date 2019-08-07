@@ -1,10 +1,10 @@
 package vukan.com.notebook
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -65,6 +65,7 @@ class MainFragment : Fragment() {
             view?.windowToken,
             0
         )
+
         view?.clearFocus()
     }
 
